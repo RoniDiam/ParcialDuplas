@@ -1,4 +1,4 @@
-package domain.enteties;
+package domain.entities;
 
 public class ContextoTipoDeCrypto {
 }

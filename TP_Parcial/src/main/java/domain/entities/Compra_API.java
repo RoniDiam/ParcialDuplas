@@ -1,6 +1,5 @@
-package domain.enteties;
+package domain.entities;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import org.apache.cxf.jaxrs.client.WebClient;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -8,7 +7,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import javax.ws.rs.core.Response;
 
 public class Compra_API  {
-    public void getCryptos() throws JsonProcessingException {
+    public void getCryptos() throws Exception {
         WebClient cryptos = WebClient.create("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false");
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
@@ -24,9 +23,12 @@ public class Compra_API  {
 
             Crypto[] crypto = objectMapper.readValue(responseBody, Crypto[].class);
             System.out.println("Nombre = " + crypto[1].name);
+
+
+        } else {
+        System.out.println("Error response = " + responseBody);
+        throw new Exception("Error en la llamada a /api/pokemon");
         }
-
-
 
 
     }
