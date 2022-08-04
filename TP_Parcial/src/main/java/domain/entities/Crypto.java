@@ -15,6 +15,11 @@ public class Crypto {
     }
     @Column(name="name")
     String name;
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     @Id
     @GeneratedValue
     private int id;

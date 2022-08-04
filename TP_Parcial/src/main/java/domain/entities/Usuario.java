@@ -5,6 +5,10 @@ import java.util.List;
 @Entity
 @Table(name = "usuarios")
 public class Usuario {
+    public void setId(int id) {
+        this.id = id;
+    }
+
     @Id
     @GeneratedValue
     private int id;

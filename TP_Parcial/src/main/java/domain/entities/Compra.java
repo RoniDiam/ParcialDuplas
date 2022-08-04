@@ -48,7 +48,7 @@ public class Compra {
     @ManyToOne
     @JoinColumn(name="usuario_id",referencedColumnName = "id")
     Usuario usuario;
-    @Transient
+    @Column(name ="fecha",columnDefinition = "DATE")
     LocalDate fecha;
     @Column
     Double cantidadDeTokens;
@@ -56,12 +56,6 @@ public class Compra {
     @JoinColumn(name="crypto_id", referencedColumnName = "id" )
     Crypto criptomoneda;
 
-    public static void guardarCompra(Compra compra){
-        EntityManagerHelper.beginTransaction();
 
-        EntityManagerHelper.getEntityManager().persist(compra);
-
-        EntityManagerHelper.commit();
-    }
 
 }
