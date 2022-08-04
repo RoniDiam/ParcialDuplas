@@ -53,7 +53,7 @@ public class Compra {
     @Column
     Double cantidadDeTokens;
     @ManyToOne
-    @JoinColumn(name="crypto_id", referencedColumnName = "id" )
+    @JoinColumn(name="crypto_id", referencedColumnName = "id_crypto" )
     Crypto criptomoneda;
 
 

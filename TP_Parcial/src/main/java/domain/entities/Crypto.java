@@ -1,7 +1,6 @@
 package domain.entities;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "crypto")
@@ -16,13 +15,24 @@ public class Crypto {
     @Column(name="name")
     String name;
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId_crypto(int id) {
+        this.id_crypto = id;
     }
 
     @Id
     @GeneratedValue
-    private int id;
+    private int id_crypto;
+
+
+    public Double getCurrent_price() {
+        return current_price;
+    }
+
+    public void setCurrent_price(Double current_price) {
+        this.current_price = current_price;
+    }
+    @Transient
+    public Double current_price;
 
     /*@OneToMany(mappedBy = "crypto", cascade = CascadeType.PERSIST)
     private List<Compra> compras;*/

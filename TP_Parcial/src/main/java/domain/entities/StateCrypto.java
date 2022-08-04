@@ -1,4 +1,5 @@
 package domain.entities;
 
-public class StateCrypto {
+public abstract class StateCrypto {
+    public abstract boolean meSirveComprar(Double valor);
 }

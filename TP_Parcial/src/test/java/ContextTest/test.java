@@ -2,10 +2,7 @@ package ContextTest;
 import static org.junit.Assert.*;
 
 import db.EntityManagerHelper;
-import domain.entities.BaseDatos;
-import domain.entities.Compra;
-import domain.entities.Crypto;
-import domain.entities.Usuario;
+import domain.entities.*;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -54,7 +51,7 @@ public class test extends AbstractPersistenceTest implements WithGlobalEntityMan
         usuario.setNombre("Manuel");
         usuario.setApellido("Cabral");
         usuario.setMail("123@gmail.com");
-        crypto.setId(1);
+        crypto.setId_crypto(1);
         crypto.setName("Bitcoin");
 
 
@@ -68,7 +65,7 @@ public class test extends AbstractPersistenceTest implements WithGlobalEntityMan
         EntityManagerHelper.beginTransaction();
 
 
-       EntityManagerHelper.getEntityManager().persist(compra);
+        EntityManagerHelper.getEntityManager().persist(compra);
 
         EntityManagerHelper.commit();
 
@@ -80,5 +77,11 @@ public class test extends AbstractPersistenceTest implements WithGlobalEntityMan
         BaseDatos consulta = new BaseDatos();
         consulta.consulta_Crypto("Bitcoin");
 
+    }
+
+    @Test
+    public void precioCrypto() throws Exception{
+        Compra_API compra = new Compra_API();
+        compra.getPrice("Bitcoin");
     }
 }
