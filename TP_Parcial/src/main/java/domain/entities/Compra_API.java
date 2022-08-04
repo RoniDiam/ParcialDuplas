@@ -1,10 +1,12 @@
 package domain.entities;
 
+import db.EntityManagerHelper;
 import org.apache.cxf.jaxrs.client.WebClient;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import javax.ws.rs.core.Response;
+import java.util.Arrays;
 
 public class Compra_API  {
     public void getCryptos() throws Exception {
@@ -24,10 +26,17 @@ public class Compra_API  {
             Crypto[] crypto = objectMapper.readValue(responseBody, Crypto[].class);
             System.out.println("Nombre = " + crypto[1].name);
 
+            //Mover a otra clase, no es parte del dominio
+            EntityManagerHelper.beginTransaction();
+
+
+            Arrays.stream(crypto).forEach(element -> {EntityManagerHelper.getEntityManager().persist(element);});
+
+            EntityManagerHelper.commit();
 
         } else {
         System.out.println("Error response = " + responseBody);
-        throw new Exception("Error en la llamada a /api/pokemon");
+        throw new Exception("Error en la llamada a /api/crypto");
         }
 
 

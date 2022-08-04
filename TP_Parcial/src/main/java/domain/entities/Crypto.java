@@ -1,6 +1,7 @@
 package domain.entities;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "crypto")
@@ -17,5 +18,8 @@ public class Crypto {
     @Id
     @GeneratedValue
     private int id;
+
+    /*@OneToMany(mappedBy = "crypto", cascade = CascadeType.PERSIST)
+    private List<Compra> compras;*/
 
 }
