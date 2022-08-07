@@ -14,8 +14,7 @@ public class TP_Parcial {
 
 
 
-        Compra_API prueba = new Compra_API();
-        prueba.getCryptos();
+
 
 
     }

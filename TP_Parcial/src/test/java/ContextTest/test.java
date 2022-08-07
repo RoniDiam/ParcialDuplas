@@ -19,6 +19,7 @@ public class test extends AbstractPersistenceTest implements WithGlobalEntityMan
     BaseDatos base = new BaseDatos();
     @Test
     public void contextUp() {
+
         assertNotNull(entityManager());
     }
     @Test
@@ -83,5 +84,12 @@ public class test extends AbstractPersistenceTest implements WithGlobalEntityMan
     public void precioCrypto() throws Exception{
         Compra_API compra = new Compra_API();
         compra.getPrice("Bitcoin");
+    }
+
+
+    @Test
+    public void meSirveBitcoin() throws Exception{
+        crypto.setName("Bitcoin");
+        assertEquals(true,crypto.meSirveComprar());
     }
 }

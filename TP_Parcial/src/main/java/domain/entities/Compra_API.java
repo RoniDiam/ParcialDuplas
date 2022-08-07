@@ -6,7 +6,9 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import javax.ws.rs.core.Response;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Compra_API  {
 
@@ -45,13 +47,19 @@ public class Compra_API  {
 
 
     }
-
-    public void getPrice(String name) throws Exception{
+    //Revisar despues
+    public Double getPrice(String name) throws Exception{
+        List<Double> priceAux = new ArrayList<>();
         Crypto[] cryptos = this.getApi();
+        System.out.println(priceAux);
         Arrays.stream(cryptos).forEach(element ->{if(name.equals(element.name)){
-            System.out.println(element.current_price);
+            priceAux.add( element.current_price); //Tambien se puede hacer con atomicas
+
+            System.out.println(priceAux);
+            
         }
         });
+        return priceAux.get(0);
         //Arrays.stream(cryptos).filter(element ->{element.name == name});
     }
 
