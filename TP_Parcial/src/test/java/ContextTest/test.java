@@ -92,4 +92,11 @@ public class test extends AbstractPersistenceTest implements WithGlobalEntityMan
         crypto.setName("Bitcoin");
         assertEquals(true,crypto.meSirveComprar());
     }
+
+    @Test
+    public void sendEmail() throws Exception{
+        EmailSender sender = new EmailSender();
+        sender.sendNotification("zirofernandez39@gmail.com");
+        
+    }
 }
