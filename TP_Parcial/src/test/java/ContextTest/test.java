@@ -1,16 +1,18 @@
 package ContextTest;
 import static org.junit.Assert.*;
+import static org.quartz.JobBuilder.newJob;
+import static org.quartz.SimpleScheduleBuilder.simpleSchedule;
+import static org.quartz.TriggerBuilder.newTrigger;
 
 import db.EntityManagerHelper;
 import domain.entities.*;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
+import org.quartz.*;
+import org.quartz.impl.StdSchedulerFactory;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
 
 import java.time.LocalDate;
-import java.util.Arrays;
 
 public class test extends AbstractPersistenceTest implements WithGlobalEntityManager {
     Usuario usuario = new Usuario();
@@ -98,5 +100,22 @@ public class test extends AbstractPersistenceTest implements WithGlobalEntityMan
         EmailSender sender = new EmailSender();
         sender.sendNotification("zirofernandez39@gmail.com");
         
+    }
+    //Mandar en dos clases y averiguar como es con cron
+
+    public static void main(String[] args) throws SchedulerException{
+        Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();
+        scheduler.start();
+        JobDetail job = newJob(MailSchedule.class).withIdentity("emailJob").build();
+        SimpleTrigger trigger = newTrigger().withIdentity("executeEmail").startNow().withSchedule(simpleSchedule().withIntervalInSeconds(20).repeatForever()).build();
+        scheduler.scheduleJob(job,trigger);
+
+    }
+
+    public static class MailSchedule implements Job {
+        @Override
+        public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
+            System.out.println("Enviando Email");
+        }
     }
 }

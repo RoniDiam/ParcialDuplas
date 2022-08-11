@@ -1,2 +1,19 @@
-D:\UTN\3-Año\Diseño de sistemas\Tp Duplas\ParcialDuplas\TP_Parcial\src\main\java\domain\TP_Parcial.java
-D:\UTN\3-Año\Diseño de sistemas\Tp Duplas\ParcialDuplas\TP_Parcial\src\main\java\domain\enteties\Usuario.java
+/home/ziro/Documents/Repositorios/Diseño/Parcial/ParcialDuplas/TP_Parcial/src/main/java/domain/entities/ShitCoin.java
+/home/ziro/Documents/Repositorios/Diseño/Parcial/ParcialDuplas/TP_Parcial/src/main/java/domain/entities/CompraInterfaz.java
+/home/ziro/Documents/Repositorios/Diseño/Parcial/ParcialDuplas/TP_Parcial/src/main/java/domain/entities/ContextoTipoDeCrypto.java
+/home/ziro/Documents/Repositorios/Diseño/Parcial/ParcialDuplas/TP_Parcial/src/main/java/domain/entities/ContextoSender.java
+/home/ziro/Documents/Repositorios/Diseño/Parcial/ParcialDuplas/TP_Parcial/src/main/java/domain/entities/Usuario.java
+/home/ziro/Documents/Repositorios/Diseño/Parcial/ParcialDuplas/TP_Parcial/src/main/java/domain/entities/Activo.java
+/home/ziro/Documents/Repositorios/Diseño/Parcial/ParcialDuplas/TP_Parcial/src/main/java/domain/entities/StableCoin.java
+/home/ziro/Documents/Repositorios/Diseño/Parcial/ParcialDuplas/TP_Parcial/src/main/java/domain/entities/Compra_API.java
+/home/ziro/Documents/Repositorios/Diseño/Parcial/ParcialDuplas/TP_Parcial/src/main/java/domain/entities/Adapter.java
+/home/ziro/Documents/Repositorios/Diseño/Parcial/ParcialDuplas/TP_Parcial/src/main/java/domain/entities/EmailSender.java
+/home/ziro/Documents/Repositorios/Diseño/Parcial/ParcialDuplas/TP_Parcial/src/main/java/domain/entities/Crypto.java
+/home/ziro/Documents/Repositorios/Diseño/Parcial/ParcialDuplas/TP_Parcial/src/main/java/domain/entities/Strong.java
+/home/ziro/Documents/Repositorios/Diseño/Parcial/ParcialDuplas/TP_Parcial/src/main/java/db/EntityManagerHelper.java
+/home/ziro/Documents/Repositorios/Diseño/Parcial/ParcialDuplas/TP_Parcial/src/main/java/domain/entities/Compra.java
+/home/ziro/Documents/Repositorios/Diseño/Parcial/ParcialDuplas/TP_Parcial/src/main/java/db/LocalDateAttributeConverter.java
+/home/ziro/Documents/Repositorios/Diseño/Parcial/ParcialDuplas/TP_Parcial/src/main/java/domain/entities/StateCrypto.java
+/home/ziro/Documents/Repositorios/Diseño/Parcial/ParcialDuplas/TP_Parcial/src/main/java/domain/entities/SenderStrategy.java
+/home/ziro/Documents/Repositorios/Diseño/Parcial/ParcialDuplas/TP_Parcial/src/main/java/domain/entities/BaseDatos.java
+/home/ziro/Documents/Repositorios/Diseño/Parcial/ParcialDuplas/TP_Parcial/src/main/java/domain/TP_Parcial.java
