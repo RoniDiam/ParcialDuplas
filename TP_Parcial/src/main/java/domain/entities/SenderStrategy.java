@@ -1,5 +1,5 @@
 package domain.entities;
 
-public interface SenderStrategy {
-   public void sendNotification();
+public abstract class SenderStrategy {
+   public abstract void sendNotification();
 }

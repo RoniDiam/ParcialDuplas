@@ -1,5 +1,5 @@
 package domain.entities;
 
-public interface StateCrypto {
-    public  boolean meSirveComprar(Double valor);
+public abstract class StateCrypto {
+    public  abstract boolean meSirveComprar(Double valor);
 }

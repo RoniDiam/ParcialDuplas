@@ -33,6 +33,8 @@ public class Compra_API  {
             throw new Exception("Error en la llamada a /api/crypto");
         }
     }
+
+    //Cambiar a adapter
     public void getCryptos() throws Exception {
             Crypto[] cryptos = this.getApi();
             System.out.println("Nombre = " + cryptos[1].name);

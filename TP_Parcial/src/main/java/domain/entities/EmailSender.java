@@ -11,7 +11,7 @@ import java.util.Properties;
 
 public class EmailSender {
 
-    public void sendNotification(String recipient) {
+    public void sendNotification(String recipient, String contenido) {
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.host", "smtp.gmail.com");
@@ -26,7 +26,7 @@ public class EmailSender {
                     recipient);
             msg.setSubject("Notificacion Crypto");
             msg.setSentDate(new Date());
-            msg.setText("El valor de tu crypto xxxxxx aumento el triple o mas en el dia xxxx  !\n");
+            msg.setText(contenido);
             Transport.send(msg, "cirogamer@gmail.com", "srpqztdtfuplgypy");
         } catch (MessagingException mex) {
             System.out.println("send failed, exception: " + mex);

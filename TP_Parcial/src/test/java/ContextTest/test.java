@@ -78,7 +78,7 @@ public class test extends AbstractPersistenceTest implements WithGlobalEntityMan
     @Test
     public void traerCrypto() throws Exception {
         BaseDatos consulta = new BaseDatos();
-        consulta.consulta_Crypto("Bitcoin");
+        consulta.traerCrypto("Bitcoin");
 
     }
 
@@ -98,7 +98,7 @@ public class test extends AbstractPersistenceTest implements WithGlobalEntityMan
     @Test
     public void sendEmail() throws Exception{
         EmailSender sender = new EmailSender();
-        sender.sendNotification("zirofernandez39@gmail.com");
+        sender.sendNotification("zirofernandez39@gmail.com","El valor de tu crypto xxxxxx aumento el triple o mas en el dia xxxx  !\n" );
         
     }
     //Mandar en dos clases y averiguar como es con cron

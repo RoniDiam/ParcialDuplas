@@ -1,30 +1,38 @@
 package domain.entities;
 
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.concurrent.CountDownLatch;
-import org.quartz.CronScheduleBuilder;
-import org.quartz.JobBuilder;
-import org.quartz.JobDataMap;
-import org.quartz.JobDetail;
-import org.quartz.Scheduler;
-import org.quartz.SchedulerException;
-import org.quartz.SchedulerFactory;
-import org.quartz.Trigger;
-import org.quartz.TriggerBuilder;
+import org.quartz.*;
+import org.quartz.impl.StdSchedulerFactory;
+
+import java.util.List;
+
+import static org.quartz.JobBuilder.newJob;
+import static org.quartz.SimpleScheduleBuilder.simpleSchedule;
+import static org.quartz.TriggerBuilder.newTrigger;
 
 public class NotificationSchedule {
-    public void jobEmail() {
-        new EmailSender().sendNotification("zirofernandez39@gmail.com");
+
+
+    public void comenzar() throws SchedulerException {
+        Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();
+        scheduler.start();
+        JobDetail job = newJob(EmailJob.class).withIdentity("emailJob").build();
+        SimpleTrigger trigger = newTrigger().withIdentity("executeEmail").startNow().withSchedule(simpleSchedule().withIntervalInSeconds(20).repeatForever()).build();
+        scheduler.scheduleJob(job, trigger);
     }
 
-    private CountDownLatch contadorSincronico = new CountDownLatch(1);
+    public static class EmailJob implements Job {
+        @Override
+        public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
+            BaseDatos base = new BaseDatos();
+            Compra_API api = new Compra_API();
 
-    public void comenzar() throws SchedulerException, InterruptedException {
+            try {
+                List cryptos = base.traerTop10();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
 
     }
-
-
-
 }
