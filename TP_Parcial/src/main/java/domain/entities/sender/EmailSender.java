@@ -1,4 +1,4 @@
-package domain.entities;
+package domain.entities.sender;
 
 
 import javax.mail.Message;

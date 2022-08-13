@@ -1,4 +1,4 @@
-package domain.entities;
+package domain.entities.usuario;
 
 import javax.persistence.*;
 import java.util.List;

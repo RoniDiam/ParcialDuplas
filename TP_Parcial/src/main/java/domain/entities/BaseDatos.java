@@ -1,12 +1,11 @@
 package domain.entities;
 
 import db.EntityManagerHelper;
+import domain.entities.usuario.Compra;
 
 import javax.persistence.Query;
 
 import java.util.List;
-
-import static org.hsqldb.Tokens.T;
 
 public class BaseDatos {
     public List consulta_Crypto(String pedido) throws Exception{

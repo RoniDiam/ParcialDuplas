@@ -1,6 +1,7 @@
-package domain.entities;
+package domain.entities.api;
 
 import db.EntityManagerHelper;
+import domain.entities.cryptomoneda.Crypto;
 import org.apache.cxf.jaxrs.client.WebClient;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -37,7 +38,7 @@ public class Compra_API  {
     //Cambiar a adapter
     public void getCryptos() throws Exception {
             Crypto[] cryptos = this.getApi();
-            System.out.println("Nombre = " + cryptos[1].name);
+            System.out.println("Nombre = " + cryptos[1].getName());
 
             //Mover a otra clase, no es parte del dominio
             EntityManagerHelper.beginTransaction();
@@ -54,7 +55,7 @@ public class Compra_API  {
         List<Double> priceAux = new ArrayList<>();
         Crypto[] cryptos = this.getApi();
         System.out.println(priceAux);
-        Arrays.stream(cryptos).forEach(element ->{if(name.equals(element.name)){
+        Arrays.stream(cryptos).forEach(element ->{if(name.equals(element.getName())){
             priceAux.add( element.current_price); //Tambien se puede hacer con atomicas
 
             System.out.println(priceAux);

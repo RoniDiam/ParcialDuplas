@@ -1,11 +1,13 @@
-package domain.entities;
+package domain.entities.cryptomoneda;
+
+import domain.entities.activo.Activo;
+import domain.entities.api.Compra_API;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "crypto")
-public class Crypto {
+public class Crypto implements Activo {
     public void setName(String name) {
         this.name = name;
     }

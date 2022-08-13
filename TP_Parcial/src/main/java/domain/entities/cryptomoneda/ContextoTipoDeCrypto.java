@@ -1,4 +1,6 @@
-package domain.entities;
+package domain.entities.cryptomoneda;
+
+import domain.entities.cryptomoneda.StateCrypto;
 
 public class ContextoTipoDeCrypto {
     private StateCrypto stateCrypto;

@@ -1,10 +1,9 @@
-package domain.entities;
+package domain.entities.usuario;
 
-import db.EntityManagerHelper;
+import domain.entities.cryptomoneda.Crypto;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Arrays;
 
 @Entity
 @Table(name = "compras")

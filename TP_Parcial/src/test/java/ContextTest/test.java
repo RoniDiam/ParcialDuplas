@@ -6,6 +6,11 @@ import static org.quartz.TriggerBuilder.newTrigger;
 
 import db.EntityManagerHelper;
 import domain.entities.*;
+import domain.entities.cryptomoneda.Crypto;
+import domain.entities.api.Compra_API;
+import domain.entities.sender.EmailSender;
+import domain.entities.usuario.Compra;
+import domain.entities.usuario.Usuario;
 import org.junit.Test;
 import org.quartz.*;
 import org.quartz.impl.StdSchedulerFactory;
