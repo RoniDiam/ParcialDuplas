@@ -1,10 +1,12 @@
 package domain.entities;
 
 import db.EntityManagerHelper;
+import domain.entities.cryptomoneda.Crypto;
 import domain.entities.usuario.Compra;
 
 import javax.persistence.Query;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class BaseDatos {
@@ -37,5 +39,14 @@ public class BaseDatos {
        EntityManagerHelper session = new EntityManagerHelper();
        EntityManagerHelper.persist(compra);
        EntityManagerHelper.commit();
+    }
+
+    public void persistirCryptos(Crypto[] cryptos){
+        EntityManagerHelper.beginTransaction();
+
+
+        Arrays.stream(cryptos).forEach(element -> {EntityManagerHelper.getEntityManager().persist(element);});
+
+        EntityManagerHelper.commit();
     }
 }

@@ -54,12 +54,12 @@ public class Compra_API  {
     public Double getPrice(String name) throws Exception{
         List<Double> priceAux = new ArrayList<>();
         Crypto[] cryptos = this.getApi();
-        System.out.println(priceAux);
+        System.out.println(cryptos);
         Arrays.stream(cryptos).forEach(element ->{if(name.equals(element.getName())){
             priceAux.add( element.current_price); //Tambien se puede hacer con atomicas
 
             System.out.println(priceAux);
-            
+
         }
         });
         return priceAux.get(0);

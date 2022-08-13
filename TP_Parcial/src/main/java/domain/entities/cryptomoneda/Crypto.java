@@ -28,14 +28,14 @@ public class Crypto implements Activo {
 
 
     public Double getCurrent_price() {
-        return current_price;
+        return currentPrice;
     }
 
     public void setCurrent_price(Double current_price) {
-        this.current_price = current_price;
+        this.currentPrice = current_price;
     }
-    @Transient
-    public Double current_price;
+    @Column(name="precio_Actual")
+    public Double currentPrice;
 
    /* @OneToMany(mappedBy = "crypto", cascade = CascadeType.PERSIST)
     private List<Compra> compras;*/
@@ -61,7 +61,7 @@ public class Crypto implements Activo {
 
             ContextoTipoDeCrypto contexto = new ContextoTipoDeCrypto(estado);
 
-            return contexto.meSirveComprar(this.current_price);
+            return contexto.meSirveComprar(this.currentPrice);
         }
         catch (Exception e) {
             System.out.println(this.getCurrent_price());

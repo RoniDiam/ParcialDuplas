@@ -6,6 +6,8 @@ import static org.quartz.TriggerBuilder.newTrigger;
 
 import db.EntityManagerHelper;
 import domain.entities.*;
+import domain.entities.api.Adapter;
+import domain.entities.api.CompraInterfaz;
 import domain.entities.cryptomoneda.Crypto;
 import domain.entities.api.Compra_API;
 import domain.entities.sender.EmailSender;
@@ -32,6 +34,11 @@ public class test extends AbstractPersistenceTest implements WithGlobalEntityMan
     @Test
     public void contextUpWithTransaction() throws Exception {
         withTransaction(() -> {});
+    }
+   @Test
+    public void iniciarBaseCrypto() throws Exception{
+       CompraInterfaz consulta = new Adapter();
+       consulta.getCryptos();
     }
 
     @Test
