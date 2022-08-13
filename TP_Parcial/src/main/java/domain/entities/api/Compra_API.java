@@ -36,34 +36,8 @@ public class Compra_API  {
     }
 
     //Cambiar a adapter
-    public void getCryptos() throws Exception {
-            Crypto[] cryptos = this.getApi();
-            System.out.println("Nombre = " + cryptos[1].getName());
 
-            //Mover a otra clase, no es parte del dominio
-            EntityManagerHelper.beginTransaction();
-
-
-            Arrays.stream(cryptos).forEach(element -> {EntityManagerHelper.getEntityManager().persist(element);});
-
-            EntityManagerHelper.commit();
-
-
-    }
     //Revisar despues
-    public Double getPrice(String name) throws Exception{
-        List<Double> priceAux = new ArrayList<>();
-        Crypto[] cryptos = this.getApi();
-        System.out.println(cryptos);
-        Arrays.stream(cryptos).forEach(element ->{if(name.equals(element.getName())){
-            priceAux.add( element.current_price); //Tambien se puede hacer con atomicas
 
-            System.out.println(priceAux);
-
-        }
-        });
-        return priceAux.get(0);
-        //Arrays.stream(cryptos).filter(element ->{element.name == name});
-    }
 
 }

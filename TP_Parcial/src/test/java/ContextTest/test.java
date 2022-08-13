@@ -35,17 +35,17 @@ public class test extends AbstractPersistenceTest implements WithGlobalEntityMan
     public void contextUpWithTransaction() throws Exception {
         withTransaction(() -> {});
     }
-   @Test
-    public void iniciarBaseCrypto() throws Exception{
+
+    /*public void iniciarBaseCrypto() throws Exception{
        CompraInterfaz consulta = new Adapter();
        consulta.getCryptos();
-    }
+    }*/
 
     @Test
     public void persistirUsuario(){
         usuario.setNombre("Manuel2");
         usuario.setApellido("Cabral");
-        usuario.setMail("123@gmail.com");
+        usuario.setMail("zirofernandez39@gmail.com");
         crypto.setName("Bitcoin");
 
         EntityManagerHelper.beginTransaction();
@@ -61,13 +61,16 @@ public class test extends AbstractPersistenceTest implements WithGlobalEntityMan
 
     @Test
 
-    public void registrarCompra(){
-        usuario.setId(1);
-        usuario.setNombre("Manuel");
+    public void registrarCompra() throws Exception {
+
+        usuario.setNombre("Manuel2");
         usuario.setApellido("Cabral");
-        usuario.setMail("123@gmail.com");
-        crypto.setId_crypto(1);
+        usuario.setMail("zirofernandez39@gmail.com");
+
         crypto.setName("Bitcoin");
+        BaseDatos base = new BaseDatos();
+        crypto.setId_crypto((Integer) base.traerIdCrypto(crypto.getName()).get(0));
+        usuario.setId((Integer) base.traerIdUsuario(usuario.getMail()).get(0));
 
 
         Compra compra = new Compra();
@@ -89,16 +92,23 @@ public class test extends AbstractPersistenceTest implements WithGlobalEntityMan
 
     @Test
     public void traerCrypto() throws Exception {
-        BaseDatos consulta = new BaseDatos();
-        consulta.traerCrypto("Bitcoin");
+        BaseDatos base = new BaseDatos();
+        System.out.println(base.traerCrypto("Bitcoin").get(0));
 
     }
 
     @Test
     public void precioCrypto() throws Exception{
-        Compra_API compra = new Compra_API();
-        compra.getPrice("Bitcoin");
+        CompraInterfaz consulta = new Adapter();
+        consulta.getPrice("Bitcoin");
     }
+    @Test
+    public void precioCryptoBase() throws Exception{
+        BaseDatos base = new BaseDatos();
+
+        System.out.println(base.traerPrecio("Bitcoin"));
+    }
+
 
 
     @Test
@@ -107,27 +117,8 @@ public class test extends AbstractPersistenceTest implements WithGlobalEntityMan
         assertEquals(true,crypto.meSirveComprar());
     }
 
-    @Test
-    public void sendEmail() throws Exception{
-        EmailSender sender = new EmailSender();
-        sender.sendNotification("zirofernandez39@gmail.com","El valor de tu crypto xxxxxx aumento el triple o mas en el dia xxxx  !\n" );
-        
-    }
+
     //Mandar en dos clases y averiguar como es con cron
 
-    public static void main(String[] args) throws SchedulerException{
-        Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();
-        scheduler.start();
-        JobDetail job = newJob(MailSchedule.class).withIdentity("emailJob").build();
-        SimpleTrigger trigger = newTrigger().withIdentity("executeEmail").startNow().withSchedule(simpleSchedule().withIntervalInSeconds(20).repeatForever()).build();
-        scheduler.scheduleJob(job,trigger);
 
-    }
-
-    public static class MailSchedule implements Job {
-        @Override
-        public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
-            System.out.println("Enviando Email");
-        }
-    }
 }

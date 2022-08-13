@@ -31,6 +31,10 @@ public class Usuario {
         this.mail = mail;
     }
 
+    public String getMail() {
+        return mail;
+    }
+
     @Column
     private String mail;
 

@@ -27,12 +27,25 @@ public class BaseDatos {
 
 
     }
-    public void traerCrypto(String name) throws Exception {
-        this.consulta_Crypto("SELECT name FROM Crypto Where name = '"+name+"'");
+    public List traerCrypto(String name) throws Exception {
+        return this.consulta_Crypto("SELECT name FROM Crypto Where name = '"+name+"'");
     }
+//Esto tendria que ser un metodo solo
+    public List traerIdCrypto(String name) throws Exception {
+        return this.consulta_Crypto("SELECT id_crypto FROM Crypto Where name = '"+name+"'");
+    }
+
+    public List traerIdUsuario(String name) throws Exception {
+        return this.consulta_Crypto("SELECT id FROM Usuario Where mail = '"+name+"'");
+    }
+
 
     public List traerTop10() throws Exception {
        return this.consulta_Crypto("SELECT name FROM Crypto Where id_Crypto <= 10");
+    }
+
+    public List traerPrecio(String name) throws Exception {
+        return this.consulta_Crypto("SELECT current_Price FROM Crypto Where name = '"+name+"'");
     }
 
     public  void guardarCompra(Compra compra){

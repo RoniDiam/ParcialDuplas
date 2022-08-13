@@ -1,6 +1,8 @@
 package domain.entities.cryptomoneda;
 
 import domain.entities.activo.Activo;
+import domain.entities.api.Adapter;
+import domain.entities.api.CompraInterfaz;
 import domain.entities.api.Compra_API;
 
 import javax.persistence.*;
@@ -45,10 +47,10 @@ public class Crypto implements Activo {
         try {
 
             StateCrypto estado = null;
-            Compra_API api = new Compra_API(); // Hacer estatico
+            CompraInterfaz consulta = new Adapter(); // Hacer estatico
             System.out.println(this.getName());
-            System.out.println(api.getPrice(this.getName()));
-            this.setCurrent_price(api.getPrice(this.getName()));
+            System.out.println(consulta.getPrice(this.getName()));
+            this.setCurrent_price(consulta.getPrice(this.getName()));
             System.out.println(this.getCurrent_price());
             if (this.getCurrent_price() < 1) {
                 estado = new ShitCoin();
