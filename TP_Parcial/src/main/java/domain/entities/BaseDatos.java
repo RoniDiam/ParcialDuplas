@@ -3,6 +3,7 @@ package domain.entities;
 import db.EntityManagerHelper;
 import domain.entities.cryptomoneda.Crypto;
 import domain.entities.usuario.Compra;
+import domain.entities.usuario.Usuario;
 
 import javax.persistence.Query;
 
@@ -21,25 +22,34 @@ public class BaseDatos {
         return results;
     }
     catch (Exception e) {
-        System.out.println("La cryptomoneda ingresada no se encuentra en la base de datos");
+        System.out.println("El parametro ingresado no se encuenta en la base de datos");
         return null;
     }
 
 
     }
-    public void traerCrypto(String name) throws Exception {
-        this.consulta_Crypto("SELECT name FROM Crypto Where name = '"+name+"'");
+    public Crypto traerCrypto(String name) throws Exception {
+       return (Crypto) this.consulta_Crypto("SELECT new Crypto(id_crypto,name) FROM Crypto Where name = '"+name+"'").get(0);
     }
+    public Usuario traerUsuario(String mail) throws Exception {
+
+        return (Usuario) this.consulta_Crypto("SELECT new Usuario(id,nombre,apellido,mail) FROM Usuario Where mail = '"+mail+"'").get(0);
+    }
+
 
     public List traerTop10() throws Exception {
        return this.consulta_Crypto("SELECT name FROM Crypto Where id_Crypto <= 10");
     }
 
-    public  void guardarCompra(Compra compra){
-       EntityManagerHelper session = new EntityManagerHelper();
-       EntityManagerHelper.persist(compra);
-       EntityManagerHelper.commit();
+
+    public void persistir(Object objeto){
+        EntityManagerHelper.beginTransaction();
+        EntityManagerHelper.persist(objeto);
+        EntityManagerHelper.commit();
+
     }
+
+
 
     public void persistirCryptos(Crypto[] cryptos){
         EntityManagerHelper.beginTransaction();

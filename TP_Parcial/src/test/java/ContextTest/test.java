@@ -35,11 +35,11 @@ public class test extends AbstractPersistenceTest implements WithGlobalEntityMan
     public void contextUpWithTransaction() throws Exception {
         withTransaction(() -> {});
     }
-   @Test
+  /* @Test
     public void iniciarBaseCrypto() throws Exception{
        CompraInterfaz consulta = new Adapter();
        consulta.getCryptos();
-    }
+    }*/
 
     @Test
     public void persistirUsuario(){
@@ -62,27 +62,9 @@ public class test extends AbstractPersistenceTest implements WithGlobalEntityMan
     @Test
 
     public void registrarCompra(){
-        usuario.setId(1);
-        usuario.setNombre("Manuel");
-        usuario.setApellido("Cabral");
-        usuario.setMail("123@gmail.com");
-        crypto.setId_crypto(1);
-        crypto.setName("Bitcoin");
 
 
-        Compra compra = new Compra();
-        compra.setUsuario(usuario);
-        compra.setCantidadDeTokens(500.0);
-        compra.setCriptomoneda(crypto);
-        compra.setFecha(LocalDate.now());
-        base.guardarCompra(compra);
 
-        EntityManagerHelper.beginTransaction();
-
-
-        EntityManagerHelper.getEntityManager().persist(compra);
-
-        EntityManagerHelper.commit();
 
 
     }
@@ -93,11 +75,16 @@ public class test extends AbstractPersistenceTest implements WithGlobalEntityMan
         consulta.traerCrypto("Bitcoin");
 
     }
+    @Test
+    public void traerUsuario() throws Exception{
+        BaseDatos base = new BaseDatos();
+        ConsoleHelper.printLine(base.traerUsuario("123@gmail.com").toString());
+    }
 
     @Test
     public void precioCrypto() throws Exception{
-        Compra_API compra = new Compra_API();
-        compra.getPrice("Bitcoin");
+        CompraInterfaz llamada = new Adapter();
+        llamada.getPrice("Bitcoin");
     }
 
 
@@ -115,19 +102,5 @@ public class test extends AbstractPersistenceTest implements WithGlobalEntityMan
     }
     //Mandar en dos clases y averiguar como es con cron
 
-    public static void main(String[] args) throws SchedulerException{
-        Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();
-        scheduler.start();
-        JobDetail job = newJob(MailSchedule.class).withIdentity("emailJob").build();
-        SimpleTrigger trigger = newTrigger().withIdentity("executeEmail").startNow().withSchedule(simpleSchedule().withIntervalInSeconds(20).repeatForever()).build();
-        scheduler.scheduleJob(job,trigger);
 
-    }
-
-    public static class MailSchedule implements Job {
-        @Override
-        public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
-            System.out.println("Enviando Email");
-        }
-    }
 }

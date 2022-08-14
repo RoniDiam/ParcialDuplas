@@ -5,6 +5,9 @@ import java.util.List;
 @Entity
 @Table(name = "usuarios")
 public class Usuario {
+    public Usuario() {
+    }
+
     public void setId(int id) {
         this.id = id;
     }
@@ -22,6 +25,13 @@ public class Usuario {
 
     public void setApellido(String apellido) {
         this.apellido = apellido;
+    }
+
+    public Usuario(int id, String nombre, String apellido, String mail) {
+        this.id = id;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.mail = mail;
     }
 
     @Column

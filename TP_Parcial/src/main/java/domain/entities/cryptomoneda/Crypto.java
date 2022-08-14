@@ -1,6 +1,8 @@
 package domain.entities.cryptomoneda;
 
 import domain.entities.activo.Activo;
+import domain.entities.api.Adapter;
+import domain.entities.api.CompraInterfaz;
 import domain.entities.api.Compra_API;
 
 import javax.persistence.*;
@@ -8,6 +10,9 @@ import javax.persistence.*;
 @Entity
 @Table(name = "crypto")
 public class Crypto implements Activo {
+    public Crypto() {
+    }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -26,6 +31,10 @@ public class Crypto implements Activo {
     @GeneratedValue
     private int id_crypto;
 
+    public Crypto( int id_crypto, String name) {
+        this.name = name;
+        this.id_crypto = id_crypto;
+    }
 
     public Double getCurrent_price() {
         return currentPrice;
@@ -34,7 +43,7 @@ public class Crypto implements Activo {
     public void setCurrent_price(Double current_price) {
         this.currentPrice = current_price;
     }
-    @Column(name="precio_Actual")
+    @Transient
     public Double currentPrice;
 
    /* @OneToMany(mappedBy = "crypto", cascade = CascadeType.PERSIST)
@@ -45,10 +54,10 @@ public class Crypto implements Activo {
         try {
 
             StateCrypto estado = null;
-            Compra_API api = new Compra_API(); // Hacer estatico
+            CompraInterfaz consulta = new Adapter(); // Hacer estatico
             System.out.println(this.getName());
-            System.out.println(api.getPrice(this.getName()));
-            this.setCurrent_price(api.getPrice(this.getName()));
+            System.out.println(consulta.getPrice(this.getName()));
+            this.setCurrent_price(consulta.getPrice(this.getName()));
             System.out.println(this.getCurrent_price());
             if (this.getCurrent_price() < 1) {
                 estado = new ShitCoin();
