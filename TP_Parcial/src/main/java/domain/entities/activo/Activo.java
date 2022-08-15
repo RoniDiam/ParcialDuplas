@@ -4,11 +4,15 @@ import javax.persistence.*;
 @Entity
 @Table(name = "activo")
 public abstract class Activo {
+    public int getId_activo() {
+        return id_activo;
+    }
+
     @Id
     @GeneratedValue
     private int id_activo;
 
-    protected Activo() {
+    public Activo() {
     }
 
     public void setName(String name) {
@@ -20,11 +24,10 @@ public abstract class Activo {
     }
 
     @Column(name="nombre")
-    protected
-    String name;
+    private String name;
 
     @Transient
-    public Double current_price;
+    private Double current_price;
 
 
 

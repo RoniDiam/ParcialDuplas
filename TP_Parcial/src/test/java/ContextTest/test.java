@@ -31,7 +31,7 @@ public class test extends AbstractPersistenceTest implements WithGlobalEntityMan
     public void contextUpWithTransaction() throws Exception {
         withTransaction(() -> {});
     }
-  /*@Test
+ /* @Test
     public void iniciarBaseCrypto() throws Exception{
        CryptoInterfaz consulta = new Adapter();
        consulta.getCryptos();
@@ -76,7 +76,8 @@ public class test extends AbstractPersistenceTest implements WithGlobalEntityMan
     @Test
     public void traerCrypto() throws Exception {
         BaseDatos consulta = new BaseDatos();
-        consulta.traerActivo("Bitcoin");
+       ConsoleHelper.printLine( consulta.traerActivo("Bitcoin").getName());
+        ConsoleHelper.printLine(String.valueOf(consulta.traerActivo("Ethereum").getId_activo()));
 
     }
 

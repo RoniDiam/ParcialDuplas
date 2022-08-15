@@ -21,6 +21,7 @@ public class Adapter implements CryptoInterfaz {
     }
 
     public Double getPrice(String name) throws Exception{
+        ConsoleHelper.printLine(name);
         CryptoApi api = new CryptoApi();
         List<Double> priceAux = new ArrayList<>();
         Activo[] cryptos = api.getApi();

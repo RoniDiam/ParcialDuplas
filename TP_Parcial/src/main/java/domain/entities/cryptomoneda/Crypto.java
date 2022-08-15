@@ -9,31 +9,6 @@ import javax.persistence.*;
 @Entity
 public class Crypto extends Activo {
 
-    @Override
-    public String getName() {
-        return name;
-    }
-
-    @Override
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    @Transient
-    private String name;
-
-    @Override
-    public Double getCurrent_price() {
-        return current_price;
-    }
-
-    @Override
-    public void setCurrent_price(Double current_price) {
-        this.current_price = current_price;
-    }
-
-    @Transient
-    public Double current_price;
 
     public Crypto(int id_activo, String name) {
         super(id_activo, name);
@@ -66,7 +41,7 @@ public class Crypto extends Activo {
 
             ContextoTipoDeCrypto contexto = new ContextoTipoDeCrypto(estado);
 
-            return contexto.meSirveComprar(this.current_price);
+            return contexto.meSirveComprar(this.getCurrent_price());
         }
         catch (Exception e) {
             System.out.println(this.getCurrent_price());
