@@ -11,7 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class BaseDatos {
-    public List consulta_Crypto(String pedido) throws Exception{
+    public static List consulta(String pedido) throws Exception{
 //"SELECT name FROM Crypto Where name = '"+name+"'"
     try {
         //Revisar despues
@@ -29,16 +29,19 @@ public class BaseDatos {
 
     }
     public Crypto traerCrypto(String name) throws Exception {
-       return (Crypto) this.consulta_Crypto("SELECT new Crypto(id_crypto,name) FROM Crypto Where name = '"+name+"'").get(0);
+       return (Crypto) this.consulta("SELECT new Crypto(id_crypto,name) FROM Crypto Where name = '"+name+"'").get(0);
     }
     public Usuario traerUsuario(String mail) throws Exception {
 
-        return (Usuario) this.consulta_Crypto("SELECT new Usuario(id,nombre,apellido,mail) FROM Usuario Where mail = '"+mail+"'").get(0);
+        return (Usuario) this.consulta("SELECT new Usuario(id,nombre,apellido,mail) FROM Usuario Where mail = '"+mail+"'").get(0);
     }
 
+    public List traerMails() throws Exception {
+        return this.consulta("SELECT mail FROM Usuario");
+    }
 
     public List traerTop10() throws Exception {
-       return this.consulta_Crypto("SELECT name FROM Crypto Where id_Crypto <= 10");
+       return this.consulta("SELECT name FROM Crypto Where id_Crypto <= 10");
     }
 
 

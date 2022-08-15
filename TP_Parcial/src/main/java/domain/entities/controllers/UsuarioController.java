@@ -5,23 +5,31 @@ import domain.entities.ConsoleHelper;
 import domain.entities.usuario.Usuario;
 
 public class UsuarioController {
-    public static void registrar(){
+    public static Usuario registrar() throws Exception {
         Usuario nuevoUsuario = new Usuario();
 
-        String nombre;
+
         String mail;
-        String apellido;
 
         BaseDatos base = new BaseDatos();
-        ConsoleHelper.printLine("Ingrese nombre");
-        nombre = ConsoleHelper.readString();
-        ConsoleHelper.printLine("Ingrese apellido");
-        apellido = ConsoleHelper.readString();
-        ConsoleHelper.printLine("Ingrese Mail");
-        mail = ConsoleHelper.readString();
+        nuevoUsuario.setNombre(ConsoleHelper.readString("Ingrese nombre: "));
+
+        nuevoUsuario.setApellido(ConsoleHelper.readString("Ingrese apellido: "));
+
+        mail = ConsoleHelper.readString("Ingrese Mail: ");
+        nuevoUsuario.setMail(mail);
 
 
         base.persistir(nuevoUsuario);
+        return base.traerUsuario(mail);
+
+    }
+
+    public static Usuario inciarSesion() throws Exception {
+        BaseDatos base = new BaseDatos();
+
+        ConsoleHelper.printLine("Ingrese su mail");
+        return  base.traerUsuario(ConsoleHelper.readString());
 
     }
 }

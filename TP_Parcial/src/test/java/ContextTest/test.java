@@ -1,21 +1,16 @@
 package ContextTest;
 import static org.junit.Assert.*;
 import static org.quartz.JobBuilder.newJob;
-import static org.quartz.SimpleScheduleBuilder.simpleSchedule;
-import static org.quartz.TriggerBuilder.newTrigger;
 
 import db.EntityManagerHelper;
 import domain.entities.*;
 import domain.entities.api.Adapter;
-import domain.entities.api.CompraInterfaz;
+import domain.entities.api.CryptoInterfaz;
 import domain.entities.cryptomoneda.Crypto;
-import domain.entities.api.Compra_API;
 import domain.entities.sender.EmailSender;
 import domain.entities.usuario.Compra;
 import domain.entities.usuario.Usuario;
 import org.junit.Test;
-import org.quartz.*;
-import org.quartz.impl.StdSchedulerFactory;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
 
@@ -35,7 +30,7 @@ public class test extends AbstractPersistenceTest implements WithGlobalEntityMan
     public void contextUpWithTransaction() throws Exception {
         withTransaction(() -> {});
     }
-  /* @Test
+  /*@Test
     public void iniciarBaseCrypto() throws Exception{
        CompraInterfaz consulta = new Adapter();
        consulta.getCryptos();
@@ -60,9 +55,17 @@ public class test extends AbstractPersistenceTest implements WithGlobalEntityMan
     }
 
     @Test
+    public void registrarCompra() throws Exception {
+        Usuario sesion = base.traerUsuario("123@gmail.com");
+        Crypto crypto1 = base.traerCrypto("Bitcoin");
 
-    public void registrarCompra(){
+        Compra compra = new Compra();
+        compra.setUsuario(sesion);
+        compra.setCriptomoneda(crypto1);
 
+        compra.setFecha(LocalDate.now());
+        compra.setCantidadDeTokens(500.0);
+        base.persistir(compra);
 
 
 
@@ -83,7 +86,7 @@ public class test extends AbstractPersistenceTest implements WithGlobalEntityMan
 
     @Test
     public void precioCrypto() throws Exception{
-        CompraInterfaz llamada = new Adapter();
+        CryptoInterfaz llamada = new Adapter();
         llamada.getPrice("Bitcoin");
     }
 
@@ -97,7 +100,7 @@ public class test extends AbstractPersistenceTest implements WithGlobalEntityMan
     @Test
     public void sendEmail() throws Exception{
         EmailSender sender = new EmailSender();
-        sender.sendNotification("zirofernandez39@gmail.com","El valor de tu crypto xxxxxx aumento el triple o mas en el dia xxxx  !\n" );
+        sender.sendEmail("zirofernandez39@gmail.com","El valor de tu crypto xxxxxx aumento el triple o mas en el dia xxxx  !\n" );
         
     }
     //Mandar en dos clases y averiguar como es con cron

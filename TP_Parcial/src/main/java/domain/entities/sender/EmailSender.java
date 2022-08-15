@@ -1,17 +1,20 @@
 package domain.entities.sender;
 
 
+import domain.entities.BaseDatos;
+
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.MimeMessage;
 import java.util.Date;
+import java.util.List;
 import java.util.Properties;
 
-public class EmailSender {
+public class EmailSender extends SenderStrategy {
 
-    public void sendNotification(String recipient, String contenido) {
+    public void sendEmail(String recipient, String contenido)  {
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.host", "smtp.gmail.com");
@@ -32,6 +35,13 @@ public class EmailSender {
             System.out.println("send failed, exception: " + mex);
         }
 
+
+    }
+
+    public void sendNotification(String msg) throws Exception {
+        BaseDatos base = new BaseDatos();
+        List mails = base.traerMails();
+        mails.forEach(mail -> {this.sendEmail(mail.toString(),msg);});
 
     }
 

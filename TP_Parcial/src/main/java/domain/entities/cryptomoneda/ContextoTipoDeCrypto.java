@@ -12,3 +12,4 @@ public class ContextoTipoDeCrypto {
         return stateCrypto.meSirveComprar(valor);
     }
 }
+

@@ -1,8 +1,11 @@
 package domain;
 
 import domain.entities.ConsoleHelper;
+import domain.entities.controllers.CompraController;
 import domain.entities.controllers.UsuarioController;
 import domain.entities.scheduler.NotificationSchedule;
+import domain.entities.sender.ContextoSender;
+import domain.entities.usuario.Usuario;
 
 import java.io.Console;
 import java.util.Scanner;
@@ -10,27 +13,49 @@ import java.util.Scanner;
 public class TP_Parcial {
 
     public static void main(String[] args) throws Exception {
+        ContextoSender.getInstancia();
         NotificationSchedule schedulerExample = new NotificationSchedule();
         schedulerExample.comenzar();
-        Scanner scanner = new Scanner(System.in);
+        Usuario sesion = new Usuario();
         int opc = -1;
-        ConsoleHelper.print("Bienvenido\n Que desea hacer?\n 1-Iniciar sesion\n 2-Registrarse ");
+        ConsoleHelper.print("Bienvenido\n Que desea hacer?\n 1-Iniciar sesion\n 2-Registrarse\n ");
         while (opc == -1) {
             opc = ConsoleHelper.readInt();
+            ConsoleHelper.readString();
             switch (opc) {
                 case 1:
-
+                    sesion = UsuarioController.inciarSesion();
                     break;
                 case 2:
-                    UsuarioController.registrar();
+                    sesion = UsuarioController.registrar();
 
                     break;
-                default: opc = -1;
-                        ConsoleHelper.print("Operacion Incorrecta");
-                        break;
+                default:
+                    opc = -1;
+                    ConsoleHelper.printLine("Operacion Incorrecta");
+                    break;
             }
         }
-
-
+        opc = -1;
+        ConsoleHelper.print("Seleccione que desea hacer? \n1-Registrar nueva compra \n2-Consultar cryptomoneda \n3-Salir del programa");
+        while (opc == -1) {
+            opc = ConsoleHelper.readInt();
+            ConsoleHelper.readString();
+            switch (opc) {
+                case 1:
+                    CompraController.registrarCompra(sesion);
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    System.exit(0);
+                    break;
+                default:
+                    opc = -1;
+                    ConsoleHelper.printLine("Operacion Incorrecta");
+                    break;
+            }
+        }
     }
+
 }

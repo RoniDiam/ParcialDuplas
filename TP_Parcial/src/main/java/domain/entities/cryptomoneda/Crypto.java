@@ -2,14 +2,13 @@ package domain.entities.cryptomoneda;
 
 import domain.entities.activo.Activo;
 import domain.entities.api.Adapter;
-import domain.entities.api.CompraInterfaz;
-import domain.entities.api.Compra_API;
+import domain.entities.api.CryptoInterfaz;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "crypto")
-public class Crypto implements Activo {
+public class Crypto extends Activo {
     public Crypto() {
     }
 
@@ -54,7 +53,7 @@ public class Crypto implements Activo {
         try {
 
             StateCrypto estado = null;
-            CompraInterfaz consulta = new Adapter(); // Hacer estatico
+            CryptoInterfaz consulta = new Adapter(); // Hacer estatico
             System.out.println(this.getName());
             System.out.println(consulta.getPrice(this.getName()));
             this.setCurrent_price(consulta.getPrice(this.getName()));

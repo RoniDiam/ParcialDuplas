@@ -1,4 +1,4 @@
 package domain.entities.activo;
 
-public interface Activo {
+public abstract class Activo {
 }

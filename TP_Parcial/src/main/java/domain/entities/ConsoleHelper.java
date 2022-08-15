@@ -8,6 +8,10 @@ public class ConsoleHelper {
     public static int readInt() {
         return scanner.nextInt();
     }
+    public static double readDouble() {
+        return scanner.nextDouble();
+    }
+
 
     public static int readInt(String message) {
         print(message);
