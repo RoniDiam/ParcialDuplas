@@ -14,14 +14,12 @@ public class Adapter implements CryptoInterfaz {
         CryptoApi api = new CryptoApi();
         BaseDatos base = new BaseDatos();
         Activo[] cryptos = api.getApi();
-        ConsoleHelper.printLine(cryptos[0].getName());
 
         base.persistirCryptos(cryptos);
 
     }
 
     public Double getPrice(String name) throws Exception{
-        ConsoleHelper.printLine(name);
         CryptoApi api = new CryptoApi();
         List<Double> priceAux = new ArrayList<>();
         Activo[] cryptos = api.getApi();

@@ -40,8 +40,9 @@ public class TP_Parcial {
             }
         }
         opc = -1;
-        ConsoleHelper.print("Seleccione que desea hacer? \n1-Registrar nueva compra \n2-Consultar cryptomoneda \n3-Ver opciones\n4-Salir del programa\n ");
         while (opc == -1) {
+            ConsoleHelper.print("Seleccione que desea hacer? \n1-Registrar nueva compra \n2-Consultar cryptomoneda \n3-Salir del programa\n ");
+
             opc = ConsoleHelper.readInt();
             ConsoleHelper.readString();
             switch (opc) {
@@ -53,10 +54,8 @@ public class TP_Parcial {
                     CryptoController.consultarCrypto();
 
                     break;
+
                 case 3:
-                    ConsoleHelper.printLine("1-Registrar nueva compra \n2-Consultar cryptomoneda \n3-Ver opciones\n4-Salir del programa\n ");
-                    break;
-                case 4:
                     System.exit(0);
                     break;
                 default:

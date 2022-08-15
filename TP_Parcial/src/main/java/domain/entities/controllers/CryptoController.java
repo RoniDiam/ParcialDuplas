@@ -56,8 +56,7 @@ public class CryptoController {
 
     public static void consultarPrecio(Activo activo) throws Exception {
         CryptoInterfaz api = new Adapter();
-        ConsoleHelper.printLine(((Crypto) activo).getName());
-        api.getPrice(activo.getName().toString());
+        ConsoleHelper.printLine(api.getPrice(activo.getName()).toString());
 
     }
     public static void meSirveComprar(Activo activo) throws Exception {

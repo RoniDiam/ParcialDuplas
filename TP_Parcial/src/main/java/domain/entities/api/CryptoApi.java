@@ -24,7 +24,6 @@ public class CryptoApi {
             Crypto[] crypto = objectMapper.readValue(responseBody, Crypto[].class);
             return crypto;
         } else {
-            System.out.println("Error response = " + responseBody);
             throw new Exception("Error en la llamada a api crypto");
         }
     }
