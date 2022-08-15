@@ -4,6 +4,7 @@ import static org.quartz.JobBuilder.newJob;
 
 import db.EntityManagerHelper;
 import domain.entities.*;
+import domain.entities.activo.Activo;
 import domain.entities.api.Adapter;
 import domain.entities.api.CryptoInterfaz;
 import domain.entities.cryptomoneda.Crypto;
@@ -32,7 +33,7 @@ public class test extends AbstractPersistenceTest implements WithGlobalEntityMan
     }
   /*@Test
     public void iniciarBaseCrypto() throws Exception{
-       CompraInterfaz consulta = new Adapter();
+       CryptoInterfaz consulta = new Adapter();
        consulta.getCryptos();
     }*/
 
@@ -57,14 +58,14 @@ public class test extends AbstractPersistenceTest implements WithGlobalEntityMan
     @Test
     public void registrarCompra() throws Exception {
         Usuario sesion = base.traerUsuario("123@gmail.com");
-        Crypto crypto1 = base.traerCrypto("Bitcoin");
+        Activo crypto1 = base.traerActivo("Bitcoin");
 
         Compra compra = new Compra();
         compra.setUsuario(sesion);
-        compra.setCriptomoneda(crypto1);
+        compra.setActivo(crypto1);
 
         compra.setFecha(LocalDate.now());
-        compra.setCantidadDeTokens(500.0);
+        compra.setCantidad(500.0);
         base.persistir(compra);
 
 
@@ -75,7 +76,14 @@ public class test extends AbstractPersistenceTest implements WithGlobalEntityMan
     @Test
     public void traerCrypto() throws Exception {
         BaseDatos consulta = new BaseDatos();
-        consulta.traerCrypto("Bitcoin");
+        consulta.traerActivo("Bitcoin");
+
+    }
+
+    @Test
+    public void traerActivo() throws Exception {
+        BaseDatos consulta = new BaseDatos();
+
 
     }
     @Test

@@ -7,45 +7,42 @@ import domain.entities.api.CryptoInterfaz;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "crypto")
 public class Crypto extends Activo {
-    public Crypto() {
+
+    @Override
+    public String getName() {
+        return name;
     }
 
+    @Override
     public void setName(String name) {
         this.name = name;
     }
 
-    public String getName() {
-        return name;
-    }
-    @Column(name="name")
-    String name;
-
-    public void setId_crypto(int id) {
-        this.id_crypto = id;
-    }
-
-    @Id
-    @GeneratedValue
-    private int id_crypto;
-
-    public Crypto( int id_crypto, String name) {
-        this.name = name;
-        this.id_crypto = id_crypto;
-    }
-
-    public Double getCurrent_price() {
-        return currentPrice;
-    }
-
-    public void setCurrent_price(Double current_price) {
-        this.currentPrice = current_price;
-    }
     @Transient
-    public Double currentPrice;
+    private String name;
 
-   /* @OneToMany(mappedBy = "crypto", cascade = CascadeType.PERSIST)
+    @Override
+    public Double getCurrent_price() {
+        return current_price;
+    }
+
+    @Override
+    public void setCurrent_price(Double current_price) {
+        this.current_price = current_price;
+    }
+
+    @Transient
+    public Double current_price;
+
+    public Crypto(int id_activo, String name) {
+        super(id_activo, name);
+    }
+
+    public Crypto() {
+    }
+
+    /* @OneToMany(mappedBy = "crypto", cascade = CascadeType.PERSIST)
     private List<Compra> compras;*/
 
     public boolean meSirveComprar() throws Exception{
@@ -69,7 +66,7 @@ public class Crypto extends Activo {
 
             ContextoTipoDeCrypto contexto = new ContextoTipoDeCrypto(estado);
 
-            return contexto.meSirveComprar(this.currentPrice);
+            return contexto.meSirveComprar(this.current_price);
         }
         catch (Exception e) {
             System.out.println(this.getCurrent_price());

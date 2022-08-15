@@ -3,8 +3,6 @@ package domain.entities.controllers;
 import domain.entities.BaseDatos;
 import domain.entities.ConsoleHelper;
 import domain.entities.activo.Activo;
-import domain.entities.activo.CreadorActivo;
-import domain.entities.activo.CreadorCrypto;
 import domain.entities.cryptomoneda.Crypto;
 import domain.entities.usuario.Compra;
 import domain.entities.usuario.Usuario;
@@ -20,7 +18,7 @@ public class CompraController {
         ConsoleHelper.printLine("Ingrese la criptomoneda");
         while (activo == null) {
             try {
-                activo = base.traerCrypto(ConsoleHelper.readString());
+                activo = base.traerActivo(ConsoleHelper.readString());
 
             } catch (Exception e){
                 activo = null;
@@ -30,9 +28,9 @@ public class CompraController {
 
         }
 
-        compra.setCriptomoneda((Crypto) activo);
+        compra.setActivo((Crypto) activo);
         ConsoleHelper.printLine("Ingrese la cantidad de tokens");
-        compra.setCantidadDeTokens(ConsoleHelper.readDouble());
+        compra.setCantidad(ConsoleHelper.readDouble());
         compra.setFecha(LocalDate.now());
 
         base.persistir(compra);

@@ -1,8 +1,8 @@
 package domain.entities;
 
 import db.EntityManagerHelper;
+import domain.entities.activo.Activo;
 import domain.entities.cryptomoneda.Crypto;
-import domain.entities.usuario.Compra;
 import domain.entities.usuario.Usuario;
 
 import javax.persistence.Query;
@@ -28,8 +28,8 @@ public class BaseDatos {
 
 
     }
-    public Crypto traerCrypto(String name) throws Exception {
-       return (Crypto) this.consulta("SELECT new Crypto(id_crypto,name) FROM Crypto Where name = '"+name+"'").get(0);
+    public Activo traerActivo(String name) throws Exception {
+       return (Activo) this.consulta("SELECT new Crypto(id_activo,name) FROM Activo Where name = '"+name+"'").get(0);
     }
     public Usuario traerUsuario(String mail) throws Exception {
 
@@ -41,7 +41,7 @@ public class BaseDatos {
     }
 
     public List traerTop10() throws Exception {
-       return this.consulta("SELECT name FROM Crypto Where id_Crypto <= 10");
+       return this.consulta("SELECT name FROM Activo Where id_Activo <= 10");
     }
 
 
@@ -54,11 +54,11 @@ public class BaseDatos {
 
 
 
-    public void persistirCryptos(Crypto[] cryptos){
+    public void persistirCryptos(Activo[] activos){
         EntityManagerHelper.beginTransaction();
 
 
-        Arrays.stream(cryptos).forEach(element -> {EntityManagerHelper.getEntityManager().persist(element);});
+        Arrays.stream(activos).forEach(element -> {EntityManagerHelper.getEntityManager().persist(element);});
 
         EntityManagerHelper.commit();
     }

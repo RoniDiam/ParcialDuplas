@@ -1,7 +1,8 @@
 package domain.entities.api;
 
 import domain.entities.BaseDatos;
-import domain.entities.cryptomoneda.Crypto;
+import domain.entities.ConsoleHelper;
+import domain.entities.activo.Activo;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,8 +13,8 @@ public class Adapter implements CryptoInterfaz {
 
         CryptoApi api = new CryptoApi();
         BaseDatos base = new BaseDatos();
-        Crypto[] cryptos = api.getApi();
-
+        Activo[] cryptos = api.getApi();
+        ConsoleHelper.printLine(cryptos[0].getName());
 
         base.persistirCryptos(cryptos);
 
@@ -22,7 +23,7 @@ public class Adapter implements CryptoInterfaz {
     public Double getPrice(String name) throws Exception{
         CryptoApi api = new CryptoApi();
         List<Double> priceAux = new ArrayList<>();
-        Crypto[] cryptos = api.getApi();
+        Activo[] cryptos = api.getApi();
 
         Arrays.stream(cryptos).forEach(element ->{if(name.equals(element.getName())){
             priceAux.add( element.getCurrent_price());
