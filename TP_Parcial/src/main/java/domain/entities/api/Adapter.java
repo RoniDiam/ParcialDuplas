@@ -1,7 +1,6 @@
 package domain.entities.api;
 
-import domain.entities.BaseDatos;
-import domain.entities.ConsoleHelper;
+import db.BaseDatos;
 import domain.entities.activo.Activo;
 
 import java.util.ArrayList;

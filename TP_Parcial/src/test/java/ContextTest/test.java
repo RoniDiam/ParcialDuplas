@@ -2,6 +2,7 @@ package ContextTest;
 import static org.junit.Assert.*;
 import static org.quartz.JobBuilder.newJob;
 
+import db.BaseDatos;
 import db.EntityManagerHelper;
 import domain.entities.*;
 import domain.entities.activo.Activo;
@@ -31,11 +32,11 @@ public class test extends AbstractPersistenceTest implements WithGlobalEntityMan
     public void contextUpWithTransaction() throws Exception {
         withTransaction(() -> {});
     }
- /* @Test
+    @Test
     public void iniciarBaseCrypto() throws Exception{
        CryptoInterfaz consulta = new Adapter();
        consulta.getCryptos();
-    }*/
+    }
 
     @Test
     public void persistirUsuario(){

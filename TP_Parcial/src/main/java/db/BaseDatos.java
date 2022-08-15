@@ -1,4 +1,4 @@
-package domain.entities;
+package db;
 
 import db.EntityManagerHelper;
 import domain.entities.activo.Activo;

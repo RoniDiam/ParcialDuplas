@@ -1,9 +1,8 @@
 package domain.entities.controllers;
 
-import domain.entities.BaseDatos;
+import db.BaseDatos;
 import domain.entities.ConsoleHelper;
 import domain.entities.activo.Activo;
-import domain.entities.activo.CreadorCrypto;
 import domain.entities.api.Adapter;
 import domain.entities.api.CryptoInterfaz;
 import domain.entities.cryptomoneda.Crypto;

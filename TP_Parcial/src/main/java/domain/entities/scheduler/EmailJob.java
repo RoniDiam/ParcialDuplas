@@ -1,9 +1,8 @@
 package domain.entities.scheduler;
 
-import domain.entities.BaseDatos;
+import db.BaseDatos;
 import domain.entities.api.Adapter;
 import domain.entities.sender.ContextoSender;
-import domain.entities.sender.EmailSender;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;

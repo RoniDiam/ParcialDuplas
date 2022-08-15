@@ -1,7 +1,7 @@
 package domain.entities.sender;
 
 
-import domain.entities.BaseDatos;
+import db.BaseDatos;
 
 import javax.mail.Message;
 import javax.mail.MessagingException;

@@ -1,6 +1,6 @@
 package domain.entities.controllers;
 
-import domain.entities.BaseDatos;
+import db.BaseDatos;
 import domain.entities.ConsoleHelper;
 import domain.entities.activo.Activo;
 import domain.entities.cryptomoneda.Crypto;
