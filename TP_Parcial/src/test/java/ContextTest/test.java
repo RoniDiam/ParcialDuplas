@@ -32,11 +32,11 @@ public class test extends AbstractPersistenceTest implements WithGlobalEntityMan
     public void contextUpWithTransaction() throws Exception {
         withTransaction(() -> {});
     }
-    @Test
+   /* @Test
     public void iniciarBaseCrypto() throws Exception{
        CryptoInterfaz consulta = new Adapter();
        consulta.getCryptos();
-    }
+    }*/
 
     @Test
     public void persistirUsuario(){
